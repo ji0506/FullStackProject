@@ -10,7 +10,7 @@
 		SELECT 
 			user_id as userId
 			,user_pwd as userPwd
-		FROM user WHERE user_id = c
+		FROM user WHERE user_id = #{userId}
 	</select>
 	
 	
