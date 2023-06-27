@@ -6,45 +6,18 @@
 
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
-	<select id="getList" resultType="org.zerock.domain.Board">
-		<![CDATA[
-			select * from tbl_board where bno >0
-		]]>
+	<select id="selectBoardList" parameterType="org.zerock.domain.Board" resultType="org.zerock.domain.Board">
+		SELECT * FROM ( 
+			SELECT 
+				*
+				,ROW_NUMBER() over(ORDER BY regDate desc) AS rownum
+				,count(1) over() AS totalCount
+			from board
+			where kate_no = #{kateNo}
+			order by regDate DESC
+		) c
+		order by rownum 	
 	</select>
 	
-	<insert id="insert">
-		insert into tbl_board (bno, title, content, writer)
-		values (seq_board.nextval, #{title}, #{content}, #{writer})
-	</insert>
-	
-	<insert id="insertSelectKey">
-	
-		<selectKey keyProperty="bno" order="BEFORE"
-			resultType="long">
-			select seq_board.nextval from dual		
-		</selectKey>
-		
-		insert into tbl_board (bno, title, content, writer)
-		values (#{bno}, #{title}, #{content}, #{writer})
-	
-	</insert>
-	
-	<select id="read" resultType="org.zerock.domain.Board">
-		<![CDATA[
-			select * from tbl_board where bno >0 and bno = #{bno} order by bno desc
-		]]>
-	</select>
-	
-	<delete id="delete">
-		delete from tbl_board where bno = #{bno}
-	</delete>
-	
-	<update id="update">
-		update tbl_board
-		set title = #{title},
-		content=#{content},
-		writer = #{writer},
-		updateDate = sysdate
-		where bno = #{bno}
-	</update>
+
 </mapper>

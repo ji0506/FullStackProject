@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,10 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 
+	@Autowired
 	private BoardService service;
 
-	@RequestMapping("/main.do")
+	@RequestMapping("/list.do")
 	public String list(Model model) {
 		
 		return "/member/login";

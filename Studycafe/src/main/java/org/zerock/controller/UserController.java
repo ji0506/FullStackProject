@@ -40,17 +40,13 @@ public class UserController {
 		
 		String hashedPassword = sha256Hash(user.getUserPwd());
 		
-		if(user2.getUserPwd().equals(hashedPassword))
-		{
-			//로그인 성공시 접속날짜 업데이트. sql에서 SYSDATE() 또는 now() 함수를 써도됨
+		if(user2.getUserPwd().equals(hashedPassword)){
 			request.getSession().setAttribute("userId", user.getUserId());
+			//로그인 성공시 접속날짜 업데이트. sql에서 SYSDATE() 또는 now() 함수를 써도됨
 			Date utilDate = new Date();
 			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());				
 			
 		}
-		
-
-		
 		
 		return "redirect:/main/main.do";
 	}
