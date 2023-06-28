@@ -14,12 +14,12 @@ import lombok.extern.log4j.Log4j;
 public class UserService {
 	
 	@Autowired
-	private UserMapper mapper;
+	private UserMapper Usermapper;
 
 
 	public User getLoginUser(String id) {
 	
-		return mapper.selectUserLogin(id);
+		return Usermapper.selectUserLogin(id);
 	}
 	
 

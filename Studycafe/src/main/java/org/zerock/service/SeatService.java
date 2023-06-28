@@ -5,22 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Board;
+import org.zerock.domain.Seat;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.SeatMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
-public class BoardServiceImpl implements BoardService {
+public class SeatService  {
 	
 	@Autowired
-	private BoardMapper mapper;
+	private SeatMapper Seatmapper;
 	
-	public List<Board> getBoardList(Board vo) {
+	public List<Seat> getSeatList() {
 		
-		return mapper.selectBoardList(vo);
+		return Seatmapper.selectSeatList();
 	}
 	
 

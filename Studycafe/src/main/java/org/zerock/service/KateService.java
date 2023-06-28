@@ -5,21 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Board;
+import org.zerock.domain.Kategorie;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.KateMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-public class BoardService  {
+public class KateService  {
 	
 	@Autowired
-	private BoardMapper Boardmapper;
+	private KateMapper Katemapper;
 	
-	public List<Board> getBoardList(Board vo) {
+	public List<Kategorie> getKateList(String ketNo) {
 		
-		return Boardmapper.selectBoardList(vo);
+		return Katemapper.selectKateList(ketNo);
 	}
 	
 
