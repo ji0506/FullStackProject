@@ -7,7 +7,12 @@
 <mapper namespace="org.zerock.mapper.KateMapper">
 
 	<select id="selectKateList" parameterType="string" resultType="org.zerock.domain.Kategorie">
-		select * from Kategorie where user_type_cd = '02'	
+		select 
+			kate_no AS kateNo  
+			,kate_name AS kateName  
+			,kate_detail AS kateDetail  
+		from Kategorie where user_type_cd = '02'	
+		
 	</select>
 	
 

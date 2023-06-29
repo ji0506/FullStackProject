@@ -12,10 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>글보기</title>
-<link rel="stylesheet" href="../../css/bootstrap.css">
-<link rel="stylesheet" href="../../css/sidebar.css">
-<link rel="stylesheet" href="../../css/list.css">
-<link rel="stylesheet" href="../../css/message.css">
+<link rel="stylesheet" href="/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/list.css">
+<link rel="stylesheet" href="/resources/css/message.css">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -15,9 +15,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
-	<link rel="stylesheet" href="../../css/bootstrap.css">
-	<link rel="stylesheet" href="../../css/sidebar.css">
-	<link rel="stylesheet" href="../../css/list.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
+	<link rel="stylesheet" href="/resources/css/list.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<title>Study & Cafe</title>
 	<style type="text/css">
@@ -129,7 +129,10 @@
 						</table>
 					</div>
 					
-					<!-- 카테고리 추가 Modal -->
+					
+					
+					<!-- 카테고리 추가 Modal 시작 -->
+ 
 					<div class="modal fade" id="myModal" role="dialog">
 						<form action="/admin/katadd.do" method="post">
 							<div class="modal-dialog">
@@ -159,8 +162,12 @@
 							</div>
 						</form>
 					</div>
+				
+					<!-- 카테고리 추가 Modal 끝 -->
 					
-					<!-- 카테고리 수정 Modal -->
+					
+					<!-- 카테고리 수정 Modal 시작 -->
+					
 					<div class="modal fade" id="myModal2" role="dialog">
 						<form action="/admin/katsave.do?katNo=100" method="post">
 							<div class="modal-dialog">
@@ -191,13 +198,16 @@
 								</div>
 							</div>
 						</form>
-					</div>					
+					</div>		
+							
+					<!-- 카테고리 수정 Modal 끝 -->
+					
 					
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script src="../../js/bootstrap.js"></script>
+	<script src="/resources/js/bootstrap.js"></script>
 </body>
 </html>
