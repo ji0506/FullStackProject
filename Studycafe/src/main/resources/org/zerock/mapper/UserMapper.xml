@@ -14,8 +14,24 @@
 	</select>
 	
 	<select id="selectAll" resultType="org.zerock.domain.User">
-		select * from user
+		select
+			user_id as userId,
+			user_pwd as userPwd,
+			user_name as userName,
+			user_email as userEmail,
+			user_cp as userCp,
+			user_addr as userAddr,
+			user_daddr as userDaddr,
+			regDate,
+			joinDate,
+			user_grade as userGrade
+		from user
 	</select>
+	
+	
+	<delete id="delete">
+		delete from user where user_id=#{userId}
+	</delete>
 	
 	
 </mapper>

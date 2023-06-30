@@ -18,9 +18,9 @@
 		) c
 		order by rownum 	
 	</select>
+
 	
-	
-	<select id="getListWithPaging" parameterType="org.zerock.domain.Board" resultType="org.zerock.domain.Board">
+	<select id="getListWithPaging" parameterType="java.util.Map" resultType="org.zerock.domain.Board">
 		SELECT * FROM (
 			SELECT 	*,
 			ROW_NUMBER() over(ORDER BY regDate desc) AS rownum,
@@ -30,5 +30,7 @@
 			WHERE rownum
 			BETWEEN (#{section}-1)*10*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10 order by rownum
 	</select>
+	
+	
 
 </mapper>

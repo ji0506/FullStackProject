@@ -32,7 +32,7 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<c:if test="${userId == 'admin'}">
+			<%-- <c:if test="${userId == 'admin'}"> --%>
 				<c:choose>
 					<c:when test="${1 eq katTargetNo}">
 						<li class="active"><a href="${contextPath}/admin/list.do?katNo=1">공지사항</a></li>
@@ -57,6 +57,6 @@
 						<li><a href="${contextPath}/admin/kate.do?katNo=100">카테고리</a></li>
 					</c:otherwise>
 				</c:choose>
-			</c:if>
+			<%-- </c:if> --%>
 		</ul>
 	</div>

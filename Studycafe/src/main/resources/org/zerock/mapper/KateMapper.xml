@@ -8,12 +8,37 @@
 
 	<select id="selectKateList" parameterType="string" resultType="org.zerock.domain.Kategorie">
 		select 
-			kate_no AS kateNo  
+			kate_no AS kateNo
 			,kate_name AS kateName  
 			,kate_detail AS kateDetail  
 		from Kategorie where user_type_cd = '02'	
 		
 	</select>
+	
+	
+	
+	<select id="selectById" resultType="org.zerock.domain.Kategorie">
+		select
+			kate_no AS kateNo
+			,kate_name AS kateName  
+			,kate_detail AS kateDetail  
+		from Kategorie where kate_no=#{kateNO}
+	</select>
+	
+	<insert id="create">
+		insert into Kategorie(kate_name, kate_detail) values(#{kateName}, #{kateDetail})
+	</insert>
+	
+	<update id="update">
+		update Kategorie set kate_name = #{kateName}, kate_detail=#{kateDetail} where kate_no=#{kateNo}
+	</update>
+	
+	<delete id="delete">
+		delete from Kategorie where kate_no=#{kateNo}
+	</delete>
+	
+	
+	
 	
 
 </mapper>

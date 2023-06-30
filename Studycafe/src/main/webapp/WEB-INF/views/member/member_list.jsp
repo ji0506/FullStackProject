@@ -39,8 +39,8 @@
 					<td width="20%">${item.userEmail}</td>
 					<td width="15%">${item.userCp}</td>
 					<td width="10%">${item.userGrade}</td>
-					<td width="8%">${item.regDate}</td>
-					<td width="8%">${item.joinDate}</td>
+					<td width="8%"><fmt:formatDate value="${item.regDate }" pattern="yyyy-MM-dd" /></td>
+					<td width="8%"><fmt:formatDate value="${item.joinDate }" pattern="yyyy-MM-dd" /></td>
 					<td width="5%" colspan="2"><input type="button" value="삭제" onclick="location.href='${contextPath}/admin/remove2.do?id=${item.userId}&katNo=${katTargetNo}'"></td>
 			</c:forEach>
 		</c:when>
