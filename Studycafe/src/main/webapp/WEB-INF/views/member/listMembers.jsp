@@ -15,9 +15,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
-	<link rel="stylesheet" href="../../css/bootstrap.css">
-	<link rel="stylesheet" href="../../css/sidebar.css">
-	<link rel="stylesheet" href="../../css/list.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
+	<link rel="stylesheet" href="/resources/css/list.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>Study & Cafe</title>
 <style type="text/css">
@@ -41,7 +41,10 @@ a, a:hover {
 <body>
 	<div id="viewport">
 		<jsp:include page="../common/sidebar.jsp"></jsp:include>
-		<!-- Content -->
+		
+		
+		<!-- start Content-->
+		<%-- 
 		<div id="content">
 			<jsp:include page="../common/top.jsp"></jsp:include>
 			<div class="main_back">
@@ -67,13 +70,49 @@ a, a:hover {
 					<div id="memberList">
 						<jsp:include page="member_list.jsp"></jsp:include>
 					</div>
-					
-
 				</div>
 			</div>
 		</div>
+		 --%>
+		<!-- end Content -->
+		
+		
+			
+		<!-- start temp div -->
+		<div id="content">
+			<jsp:include page="../common/top.jsp"></jsp:include>
+			<div class="main_back">
+				<div class="container">
+					<h1 style="font-family: Namum">회원 목록</h1>
+					<div style="border-bottom: 1px solid #bdbdbd42; margin:5px 20px 20px 20px"></div>
+					<form method="post" name="search">
+						<table class="pull-right">
+							<tr>
+								<td>
+									<select class="form-control" name="searchField">
+										<option value="0">선택</option>
+										<option value="bbsTitle">제목</option>
+										<option value="userID">작성자</option>
+									</select>
+								</td>
+								<td>
+									<input type="text" class="form-control" placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+								<td><button type="button" class="btn btn-white btn-dark">검색</button></td>
+							</tr>
+						</table>
+					</form>
+					<div id="memberList">
+						<jsp:include page="temp.jsp"></jsp:include>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end temp div -->
+		
+		
+		
 	</div>
 
-	<script src="../../js/bootstrap.js"></script>
+	<script src="/resources/js/bootstrap.js"></script>
 </body>
 </html>

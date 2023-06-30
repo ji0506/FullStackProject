@@ -20,11 +20,11 @@
 <meta name="Description" content="">
 <title>회원정보 수정</title>
 <link rel="stylesheet" href="../css/join.css" />
-	<link rel="stylesheet" href="../../css/bootstrap.css">
-	<link rel="stylesheet" href="../../css/sidebar.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="../../js/bootstrap.js"></script>
-	<script src="../../js/sidebar.js"></script>
+	<script src="/resources/js/bootstrap.js"></script>
+	<script src="/resources/js/sidebar.js"></script>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -140,6 +140,6 @@
 	
 	
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="../../js/bootstrap.js"></script>
+	<script src="/resources/js/bootstrap.js"></script>
 </body>
 </html>

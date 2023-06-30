@@ -17,12 +17,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
-	<link rel="stylesheet" href="../../css/bootstrap.css">
-	<link rel="stylesheet" href="../../css/sidebar.css">
-	<link rel="stylesheet" href="../../css/list.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
+	<link rel="stylesheet" href="/resources/css/list.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="../../js/bootstrap.js"></script>
-	<script src="../../js/sidebar.js"></script>
+	<script src="/resources/js/bootstrap.js"></script>
+	<script src="/resources/js/sidebar.js"></script>
 <style type="text/css">
 a, a:hover {
 	color: #000000;
