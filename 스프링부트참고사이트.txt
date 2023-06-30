@@ -1,0 +1,7 @@
+-참고사이트-
+jpa 참고
+https://goddaehee.tistory.com/209
+https://twoicefish-secu.tistory.com/532
+https://pinokio0702.tistory.com/142
+spring boot 참고 사이트
+https://djunnni.gitbook.io/springboot/2019-09-04
