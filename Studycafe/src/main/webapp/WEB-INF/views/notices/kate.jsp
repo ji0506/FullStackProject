@@ -37,6 +37,7 @@
 		</c:when>
 	</c:choose>
 	<script>
+	
 		function modify(katNo) {
 			var form = document.joinForm;
 	
@@ -45,9 +46,9 @@
 				type: "post",
 				datatype:"json",
 				data: {"katNo" : katNo},
-				success:function(obj){
+				success:function(data){
 	
-					var data=JSON.parse(obj);
+					/* var data=JSON.parse(obj); */
 					
 					$('#kateName').val(data.kateName);			
 					$('#kateDetail').val(data.kateDetail);

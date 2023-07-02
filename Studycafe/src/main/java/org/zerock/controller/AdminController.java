@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -170,14 +171,14 @@ public class AdminController {
 		return "redirect:/admin/kate.do";
 	}
 	
-	@RequestMapping("/katmod.do")
+	@PostMapping("/katmod.do")
 	@ResponseBody
-	public Kategorie katmod(@RequestParam("katNo")String katSearchNo) {		//ajax 활용
+	public Kategorie katmod(@RequestParam("katNo") int kateNo) {		//ajax 활용
 		
 //		PrintWriter out = response.getWriter();
 		
 		//추천 표시
-		Kategorie kat = service.getKateView(Integer.parseInt(katSearchNo)); // 추천 여부 확인
+		Kategorie kat = service.getKateView(kateNo); // 추천 여부 확인
 		
 //		// Gson 객체 생성
 //        Gson gson = new Gson();

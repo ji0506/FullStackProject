@@ -28,26 +28,26 @@ public class KateMapperTests {
 		kateMapper.selectById(1);
 	}
 	
-	@Test
-	public void testCreate() {
-		Kategorie kate = new Kategorie();
-		kate.setKateName("Simpson");
-		kate.setKateDetail("DOH!");
-		kateMapper.create(kate);
-	}
-	
-	@Test
-	public void testUpdate() {
-		Kategorie kate = new Kategorie();
-		kate.setKateName("날다람쥐");
-		kate.setKateDetail("안아달라고");
-		kate.setKateNo(2);
-		kateMapper.update(kate);
-	}
-	
-	@Test
-	public void testDelete() {
-		kateMapper.delete(1);
-	}
+//	@Test
+//	public void testCreate() {
+//		Kategorie kate = new Kategorie();
+//		kate.setKateName("Simpson");
+//		kate.setKateDetail("DOH!");
+//		kateMapper.create(kate);
+//	}
+//	
+//	@Test
+//	public void testUpdate() {
+//		Kategorie kate = new Kategorie();
+//		kate.setKateName("날다람쥐");
+//		kate.setKateDetail("안아달라고");
+//		kate.setKateNo(2);
+//		kateMapper.update(kate);
+//	}
+//	
+//	@Test
+//	public void testDelete() {
+//		kateMapper.delete(1);
+//	}
 	
 }

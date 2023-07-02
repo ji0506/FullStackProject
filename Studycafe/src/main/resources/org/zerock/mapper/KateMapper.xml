@@ -22,7 +22,7 @@
 			kate_no AS kateNo
 			,kate_name AS kateName  
 			,kate_detail AS kateDetail  
-		from Kategorie where kate_no=#{kateNO}
+		from kategorie where kate_no=#{kateNo}
 	</select>
 	
 	<insert id="create">
