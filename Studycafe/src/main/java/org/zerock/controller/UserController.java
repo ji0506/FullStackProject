@@ -6,11 +6,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.domain.User;
 import org.zerock.service.UserService;
 
@@ -20,7 +23,9 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/member/*")
 public class UserController {
-
+	
+	HttpSession session;
+	
 	@Autowired
 	private UserService service;
 
@@ -50,8 +55,69 @@ public class UserController {
 		
 		return "redirect:/main/main.do";
 	}
+	
+	@RequestMapping("/save.do")
+	public String save(ModelMap model,HttpServletRequest request, User user) {
 
+		String hashedPassword = sha256Hash(user.getUserPwd());
+		user.setUserPwd(hashedPassword);
+		//저장
+		service.registerUser(user);
+		return "redirect:/member/main.do";
+	}
+	
+	@RequestMapping("/update.do")
+	public String update(ModelMap model,HttpServletRequest request, User user) {
 
+		user.setUserId((String) request.getSession().getAttribute("userId"));
+
+		if (user.getUserPwd() == null) {
+			User user2 = service.selectById(user.getUserId());
+			user.setUserPwd(user2.getUserPwd());
+		} else {
+			String hashedPassword = sha256Hash(user.getUserPwd());
+			user.setUserPwd(hashedPassword);
+		}
+		service.updateUser(user);
+
+		return "redirect:/main/main.do";
+	}
+	
+	@RequestMapping("/join.do")
+	public String join(ModelMap model,HttpServletRequest request, User user) {
+		return "/member/join";
+	}
+	
+	@RequestMapping("/checkId.do")
+	@ResponseBody
+	public String idCheck(ModelMap model,HttpServletRequest request, @RequestParam("userId") String userID){
+		String result = "";
+		if(service.idCheck(userID) == 1) {
+			result = "fail";
+		}else {
+			result = "success";
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/updateForm.do")
+	public String update(ModelMap model,HttpServletRequest request) {
+		session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		
+		User user = service.selectById(userId);
+		model.addAttribute("user", user);
+		return "/member/update";
+	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(ModelMap model,HttpServletRequest request) {
+		session = request.getSession(false);
+		session.removeAttribute("userId");
+		return "redirect:/main/main.do";
+	}
+	
 	
 	
 	public static String sha256Hash(String input) {
