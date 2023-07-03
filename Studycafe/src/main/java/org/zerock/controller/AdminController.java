@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.domain.Board;
+import org.zerock.domain.Comment;
 import org.zerock.domain.Kategorie;
 import org.zerock.service.AdminService;
 
@@ -24,8 +27,6 @@ import lombok.extern.log4j.Log4j;
 public class AdminController {
 	@Autowired
 	private AdminService service;
-	
-	
 	
 	
 	
@@ -112,20 +113,17 @@ public class AdminController {
 		return "/notices/kate";
 	}
 	
-//	@RequestMapping("/add.do")
-//	public String add(Board brd) {
-//		
-//		String title = request.getParameter("title");
-//		String content = request.getParameter("content");
-//		
-//		
-//		brd.setTitle(title);
-//		brd.setContent(content);
-//		brd.setKateNo(katNo);
+	//미완성 객체
+	@RequestMapping("/add.do")
+	public String add(@RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("katNo") int kateNo, Board brd, Model model) {
+				
+		brd.setTitle(title);
+		brd.setContent(content);
+		brd.setKateNo(kateNo);
 //		brd.setUserId((String)request.getSession().getAttribute("userId"));
-//		
-//		return "redirect:/admin/list.do";
-//	}
+		
+		return "redirect:/admin/list.do";
+	}
 	
 	@RequestMapping("/katadd.do")
 	public String kateadd(@RequestParam("kateName") String kateName, @RequestParam("kateDetail") String kateDetail) {
@@ -139,19 +137,18 @@ public class AdminController {
 		return "redirect:/admin/kate.do";
 	}
 	
-//	@RequestMapping("/view.do")
-//	public String admin_view(@RequestParam("brdNo")String no, Model model) {
-//		
-//		String no = request.getParameter("brdNo");
-//		Board vo = service.getBoardView(Integer.parseInt(no));
-//		request.setAttribute("info", vo);
-//		service.CntUpdate(vo.getBrdNo());
-//		vo.setCnt(vo.getCnt()+1);
-//		List<Comment> comlist= adminService.getCommentList(Integer.parseInt(no));
-//		request.setAttribute("list", comlist);
-//		
-//		return "/notices/admin_view";
-//	}
+	@RequestMapping("/view.do")
+	public String admin_view(@RequestParam("brdNo")int brdNo, Model model) {
+		
+		Board vo = service.getBoardView(brdNo);
+		model.addAttribute("info", vo);
+		service.CntUpdate(vo.getBrdNo());
+		vo.setCnt(vo.getCnt()+1);
+		List<Comment> comlist= service.getCommentList(brdNo);
+		model.addAttribute("list", comlist);
+		
+		return "/notices/admin_view";
+	}
 	
 	
 	

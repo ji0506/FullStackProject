@@ -6,9 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Board;
+import org.zerock.domain.Comment;
 import org.zerock.domain.Kategorie;
 import org.zerock.domain.User;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.CommentMapper;
 import org.zerock.mapper.KateMapper;
 import org.zerock.mapper.UserMapper;
 
@@ -26,6 +28,9 @@ public class AdminService {
 	
 	@Autowired
 	BoardMapper brdMapper;
+	
+	@Autowired
+	CommentMapper comMapper;
 
 	
 	public List<User> getUserList() {
@@ -36,7 +41,9 @@ public class AdminService {
 		return kateMapper.selectKateList("2");
 	}
 	
-	
+	public Board getBoardView(int brdNo) {
+		return brdMapper.selectById(brdNo);
+	}
 	
 	
 	
@@ -84,23 +91,19 @@ public class AdminService {
 //		
 //	}
 //	
-//	public Board getBoardView(int brdNo) {
-//		return brdMapper.selectById(brdNo);
-//	}
 //	
 //	public void removeBoard(int brdNo) {
 //		brdMapper.delete(brdNo);	
 //	}
 //	
 //	
-//	public void CntUpdate(int brdNo) {
-//		
-//		
-//		brdMapper.CntUpdate(brdNo);	
-//	}
-//	
+	public void CntUpdate(int brdNo) {
+		brdMapper.CntUpdate(brdNo);	
+	}
 	
-	
+	public List<Comment> getCommentList(int brdNo){
+		return comMapper.selectById(brdNo);
+	}	
 
 	
 }
