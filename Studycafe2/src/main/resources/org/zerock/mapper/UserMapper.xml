@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.UserMapper">
+
+	<select id="selectUserLogin" resultType="org.zerock.domain.User" parameterType="string" >
+		SELECT
+		user_id as userId
+		,user_pwd as userPwd
+		FROM user WHERE user_id = #{userId}
+	</select>
+	
+	<insert id="create" parameterType="org.zerock.domain.User">
+		insert into user(user_id,user_pwd,user_name,user_email,user_addr,user_DAddr, user_cp, regDate, joinDate, user_grade)
+		values(#{userId},#{userPwd},#{userName},#{userEmail},#{userCp},#{userAddr},#{userDaddr},#{regDate},sysdate,#{userGrade})
+	</insert>
+	
+	<select id="selectAll" resultType="org.zerock.domain.User">
+		select
+		user_id as userId,
+		user_pwd as userPwd,
+		user_name as userName,
+		user_email as userEmail,
+		user_cp as userCp,
+		user_addr as userAddr,
+		user_daddr as userDaddr,
+		regDate,
+		joinDate,
+		user_grade as userGrade
+		from user
+	</select>
+	
+	<select id="selectById" resultType="org.zerock.domain.User" parameterType="String" >
+		SELECT * from user where user_Id = #{userId}
+	</select>
+
+	<update id="update" parameterType="org.zerock.domain.User">
+		update user set user_name=#{userName},user_addr=#{userAddr},user_DAddr=#{userDaddr},user_email=#{userEmail},
+		user_cp=#{userCp},user_grade=#{userGrade},user_pwd=#{userPwd} where user_id=#{userId}
+	</update>
+	
+	<update id="gradeUpdate" parameterType="Map">
+		update user set user_grade = #{userGrade} where user_id = #{userId}
+	</update>
+	
+	<update id="joinDateUpdate" parameterType="Map">
+		update user set joinDate = #{joinDate} where user_id = #{userId}
+	</update>
+	
+	<delete id="delete">
+		delete from user where user_id=#{userId}
+	</delete>
+	
+	<select id="authenticateUser" resultType="org.zerock.domain.User" parameterType="Map" >
+		select user_id as userId, user_pwd as userPwd from user where user_id=#{userId} AND user_pwd=#{userPwd}
+	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="String" >
+		select count(*) where user_id = ${userId}
+	</select>
+</mapper>
