@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.CommentMapper">
+
+	<select id="selectKateList" parameterType="Integer" resultType="org.zerock.domain.Comment">
+		select 
+			com_no as comNo
+			parent_no as parentNo
+			brd_no as brdNo
+			com_content as comContent
+			regData as regDate
+			user_id as userId			
+		from board_comment 
+		order by regDate desc
+	</select>
+	
+	
+	
+	<select id="selectById" resultType="org.zerock.domain.Comment">
+		select
+			com_no as comNo
+			parent_no as parentNo
+			brd_no as brdNo
+			com_content as comContent
+			regData as regDate
+			user_id as userId		
+		from board_comment 
+		where com_no=#{kateNO}
+	</select>
+	
+	<insert id="create" parameterType="org.zerock.domain.Comment" >
+		insert into board_comment(brd_no,com_content,user_id,regData) values(#{brdNo}, #{comContent},#{userId},#{regDate})
+	</insert>
+	
+	<update id="update" parameterType="org.zerock.domain.Comment">
+		update board_comment set = #{com_content}, modDate=#{modDate} where com_no=#{comNo}
+	</update>
+	
+	<delete id="delete">
+		delete from board_comment where com_no=#{comNo}
+	</delete>
+	
+	
+	
+	
+
+</mapper>

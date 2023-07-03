@@ -6,21 +6,73 @@
 
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
-	<select id="selectBoardList" parameterType="org.zerock.domain.Board" resultType="org.zerock.domain.Board">
+	<select id="selectBoardList" parameterType="org.zerock.domain.Common" resultType="org.zerock.domain.Board">
 		SELECT * FROM ( 
-			SELECT 
-				*
-				,ROW_NUMBER() over(ORDER BY regDate desc) AS rownum
-				,count(1) over() AS totalCount
-			from board
-			where kate_no = #{kateNo}
-			order by regDate DESC
-		) c
-		order by rownum 	
+		SELECT  
+			brd_no as brdNo
+			,title
+			,content
+			,regDate
+			,kate_no as katNo
+			,vote_no as voteNo 
+			,cnt
+			,user_id as userId
+			,ROW_NUMBER() over(ORDER BY regDate desc) AS rownum
+			,count(1) over() AS totalCount 
+		from board  
+		where kate_no=? 
+		<if test='searchId != null || searchId != ""'>
+			and ${searchId} 
+		</if>
+		<if test='searchText != null || searchText != ""'>
+			(like '%' ||#{searchText}||'%')
+		</if>
+		order by regDate DESC 
+		) c 
+		WHERE rownum BETWEEN (#{section}-1)*10*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
+		order by rownum
 	</select>
 
+	<select id="selectById" parameterType="integer" resultType="org.zerock.domain.Board">
+		select 
+			brd_no as brdNo
+			,title
+			,content
+			,regDate
+			,kate_no as katNo
+			,cnt
+			,user_id as userId
+			,(select count(*) from board_vote where brd_no=#{brdNo}) as voteNo 
+		from board 
+		where brd_no = #{brdNo}
+	</select>
 	
-	<select id="getListWithPaging" parameterType="java.util.Map" resultType="org.zerock.domain.Board">
+	<insert id="create" parameterType="org.zerock.domain.Board">
+		insert into board(title,content,file_name,user_id,kate_no) values(#{title},#{content},null,#{userId},#{kateNo])
+	</insert>
+	
+	<update id="update" parameterType="org.zerock.domain.Board">
+		update board set title = #{title},content = #{content} where brd_no= #{brdNo}
+	</update>
+	
+	<delete id="delete">
+		delete from board where brd_no=#{brdNo}
+	</delete>
+	
+	<update id="CntUpdate">
+		update board set cnt = cnt+1 where brd_no=#{brdNo}
+	</update>
+
+	
+	<insert id="insertVote" parameterType="org.zerock.domain.Board">
+		insert into board_vote values(#{userId},#{brdNo})
+	</insert>
+	
+	<select id="selectVote" parameterType="org.zerock.domain.Board">
+		select count(*) as cnt from board_vote where brd_no = #{brdNo} and user_id=#{userId}  
+	</select>
+	
+		<select id="getListWithPaging" parameterType="java.util.Map" resultType="org.zerock.domain.Board">
 		SELECT * FROM (
 			SELECT 	*,
 			ROW_NUMBER() over(ORDER BY regDate desc) AS rownum,
@@ -30,6 +82,8 @@
 			WHERE rownum
 			BETWEEN (#{section}-1)*10*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10 order by rownum
 	</select>
+	
+	
 	
 	
 

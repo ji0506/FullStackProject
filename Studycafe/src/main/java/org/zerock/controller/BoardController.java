@@ -1,9 +1,19 @@
 package org.zerock.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.zerock.domain.Board;
+import org.zerock.domain.Comment;
+import org.zerock.domain.Common;
+import org.zerock.domain.Kategorie;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -16,12 +26,96 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 
 	@Autowired
-	private BoardService service;
+	private BoardService brdService;
 
 	@RequestMapping("/list.do")
-	public String list(Model model) {
+	public String list(Model model, Common common) {		
 		
-		return "/member/login";
+		List<Kategorie> katlist  = brdService.getMenu();
+		model.addAttribute("katlist", katlist);
+
+		
+		if(common.getKatNo() != 0) 
+			model.addAttribute("katTargetNo", common.getKatNo());
+			
+		for(Kategorie kat : katlist) {
+			if(common.getKatNo() == kat.getKateNo()){
+				model.addAttribute("katTargetName", kat.getKateName());
+			}
+		}
+		
+		List<Board> list  = brdService.getBoardList(common);
+
+		
+		model.addAttribute("section", common.getSection());
+		model.addAttribute("pageNum", common.getPageNum());
+		model.addAttribute("list", list);
+		
+		common.setKatNo(1); // 게시판 ID 설정
+
+		//게시판 내용 불러오기
+		List<Board> noticelist  = brdService.getBoardList(common);  // 게시판 리스트와 총건수를 받음
+		model.addAttribute("noticelist", noticelist); 
+
+		
+		if(list.size() > 0)
+			model.addAttribute("tot", list.get(0).getTotalCount());
+
+		return "/board/list";
+	}
+	
+	@RequestMapping("/view.do")
+	public String view(Model model, @RequestParam("brdNo") int brdNo) {
+		brdService.CntUpdate(brdNo);
+		Board vo = brdService.getBoardView(brdNo);
+		model.addAttribute("info", vo);
+		List<Comment> comlist= brdService.getCommentList(brdNo);
+		
+		model.addAttribute("list", comlist);
+
+		return "/board/view";
+	}
+	
+	@RequestMapping("/save.do")
+	public String save(Model model, Board brd) {
+		brdService.save(brd);
+		return "redirect:/board/list.do";	
 	}
 
+	@RequestMapping("/mod.do")
+	public String mod(Model model, @RequestParam("brdNo") int brdNo) {
+		Board fix = brdService.getBoardView(brdNo);
+		model.addAttribute("info", fix);
+		
+		model.addAttribute("update", fix);
+		return "/board/viewmod";
+	}
+
+	@RequestMapping("/remove.do")
+	public String remove(Model model, @RequestParam("brdNo") int brdNo) {
+	    brdService.removeBoard(brdNo);   
+	    return "redirect:/board/list.do";	
+	}
+	
+	@RequestMapping("/addReply.do")
+	public String remove(Model model, Comment commnect) {
+		
+		brdService.saveComment(commnect);
+		
+		model.addAttribute("brdNo", commnect.getBrdNo());
+		
+	    return "redirect:/board/list.do";	
+	}
+	
+
+	
+	@RequestMapping("/Updatevote.do")
+	@ResponseBody
+	public Map<String,Integer> updatvodte() {
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		return map;
+	}
+	
+
+	
 }
