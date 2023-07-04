@@ -45,7 +45,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li id="btn"><a href="#">${userId}</a>
                     <ul id="slideTogglebox">
-                        <li><a href="/member/updatefrom.do">회원정보수정</a></li>
+                        <li><a href="/member/updateForm.do">회원정보수정</a></li>
                         <li><a href="/member/logout.do" onclick="toggleLogout()"><span id="logoutText">로그아웃</span></a></li>
                     </ul>
                 </li>

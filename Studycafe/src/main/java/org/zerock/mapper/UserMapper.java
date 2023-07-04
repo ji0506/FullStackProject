@@ -8,6 +8,8 @@ import org.zerock.domain.User;
 
 public interface UserMapper {
 
+	User selectById(String userId);
+	
 	List<User> selectAll();
 	
 	User selectUserLogin(String userId);

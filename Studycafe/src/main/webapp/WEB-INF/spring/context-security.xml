@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<security:http>
+			<security:intercept-url pattern="/member/main.do" access="permitAll"/>
+			<security:intercept-url pattern="/member/login.do" access="permitAll"/>
+			<security:intercept-url pattern="/member/**" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/board/**" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/main/**" access="hasRole('ROLE_USER')"/>
+		
+		<security:form-login username-parameter="userID"
+		            password-parameter="password"
+		            login-page="/member/main.do"
+		            default-target-url="/main/main.do"
+		            login-processing-url="/member/login.do"
+		            authentication-failure-url="/member/main.do?fail=true" />
+
+		<security:logout logout-url="/member/logout.do"
+		        invalidate-session="true"
+		/>
+
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="admin" password="12345"
+					authorities="ROLE_USER" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+       
+</beans>

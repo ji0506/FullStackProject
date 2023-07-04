@@ -91,7 +91,7 @@
 	function CheckDup() {
 		var form = document.joinForm;
 
-		if (!form.userID.value) {
+		if (!form.userId.value) {
 			alert("아이디를 입력해주세요.");
 			form.userID.focus();
 			return;
@@ -101,7 +101,7 @@
 			url:"/member/checkId.do",		// servlet 
 			type: "post",
 			datatype:"text",
-			data: {"userId" : form.userID.value},
+			data: {"userId" : form.userId.value},
 			success:function(data){
 
 				if(data === 'success'){
@@ -141,14 +141,14 @@
 				<tr>
 					<th><span class="blet">*</span> 아이디</th>
 					<td>
-						<input type="text" name="userID" size="20" maxlength="16" />
+						<input type="text" name="userId" size="20" maxlength="16" />
 						<input type="button" value="중복 검사" onClick="CheckDup();" class="btnDup">
 						<div id='message'></div>	
 					</td>
 				</tr>
 				<tr>
 					<th><span class="blet">*</span> 비밀번호</th>
-					<td><input type="password" name="userPW" size="20" maxlength="16" />
+					<td><input type="password" name="userPwd" size="20" maxlength="16" />
 						<span class="f12 fC666">※ 8~16글자의 영어, 숫자 혼용</span>
 					</td>
 				</tr>
@@ -158,27 +158,27 @@
 				</tr>
 				<tr>
 					<th><span class="blet">*</span> 이름</th>
-					<td><input type="text" name="name" size="15" maxlength="6" /></td>
+					<td><input type="text" name="userName" size="15" maxlength="6" /></td>
 				</tr>
 				<tr>
 					<th>전화</th>
-					<td><input type="text" name="tel" size="15" maxlength="15" /></td>
+					<td><input type="text" name="userCp" size="15" maxlength="15" /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" size="30" maxlength="40" /></td>
+					<td><input type="email" name="userEmail" size="30" maxlength="40" /></td>
 				</tr>
 				<tr>
 					 <th>주소</th>
                 <td>
-                    <input type="text" id="addr" name="addr" placeholder="주소" size="60">
+                    <input type="text" id="addr" name="userAddr" placeholder="주소" size="60">
                     <input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br>
                 </td>
 				</tr>
 					<tr>
 					 <th>상세주소</th>
                 <td>
-                    <input type="text" id="user_addr2" name="addr2" placeholder="상세주소" size="20">
+                    <input type="text" id="user_addr2" name="userDaddr" placeholder="상세주소" size="20">
                 </td>
 					</tr>
 			</table>

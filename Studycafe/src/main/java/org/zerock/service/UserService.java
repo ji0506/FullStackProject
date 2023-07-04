@@ -55,4 +55,8 @@ public class UserService {
 	public int idCheck(String userId) {
 		return Usermapper.idCheck(userId);
 	}
+	
+	public User selectById(String userId) {
+		return Usermapper.selectById(userId);
+	}
 }
