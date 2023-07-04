@@ -4,6 +4,7 @@ package org.zerock.security;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.codec.binary.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,9 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by DevHoon on 2016. 5. 20.
- */
 @Component
 public class DatasourceAuthenticationProvider implements AuthenticationProvider {
 
@@ -24,13 +22,14 @@ public class DatasourceAuthenticationProvider implements AuthenticationProvider 
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String userID = (String) authentication.getPrincipal();
-		String password = (String) authentication.getCredentials();
+		String userIDCrypt = (String) authentication.getPrincipal();
+		String passwordCrypt = (String) authentication.getCredentials();
 		
+		String userID = decrypt(userIDCrypt);
+		String password = decrypt(passwordCrypt);
 		
-
 		UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(userID, password,new ArrayList<>());
-		result.setDetails(user);
+		//result.setDetails(user);
 		
 		return result;
 	}
@@ -41,5 +40,20 @@ public class DatasourceAuthenticationProvider implements AuthenticationProvider 
 	}
 	
 	
-	
+	/**
+	 * 암호화 되어진 ID, PW 해제
+	 * @param 
+	 * @return
+	 */
+	private String decrypt(String data){
+		
+		if (data == null) {
+	        return "";
+	    }
+
+	    byte[] hashValue = null; // 해쉬값
+	    hashValue = data.getBytes();
+
+	    return new String(Base64.decodeBase64(hashValue));	
+	}
 }
