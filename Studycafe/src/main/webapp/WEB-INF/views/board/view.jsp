@@ -12,14 +12,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Study & Cafe</title>
-<link rel="stylesheet" href="../../css/bootstrap.css">
-<link rel="stylesheet" href="../../css/sidebar.css">
-<link rel="stylesheet" href="../../css/list.css">
-<link rel="stylesheet" href="../../css/message.css">
+<link rel="stylesheet" href="/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/list.css">
+<link rel="stylesheet" href="/resources/css/message.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../../js/bootstrap.js"></script>
-<script src="../../js/sidebar.js"></script>
+<script src="/resources/js/bootstrap.js"></script>
+<script src="/resources/js/sidebar.js"></script>
 <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
       function backToList(obj,url){
@@ -171,12 +171,8 @@ button-align {
 
 						<div id="messages">Comment...</div>
 						<div class="group">
-							<input type="text" id="comment"
-								placeholder="댓글을 남겨주세요" name="content"
-								id="messages"> <span class="highlight"></span> <span
-								class="bar"></span> <input type=button value="답글쓰기"
-								onClick="fn_reply_form('${contextPath}/board/addReply.do', ${info.brdNo})">
-
+							<input type="text" id="comment" placeholder="댓글을 남겨주세요" name="comContent" id="messages"> 
+							<span class="highlight"></span> <span class="bar"></span> <input type=button value="답글쓰기" onClick="fn_reply_form('${contextPath}/board/addReply.do', ${info.brdNo})">
 							<div style="border-bottom: 1px solid #bdbdbd42; margin: 5px 20px 20px 20px"></div>
 
 							<c:choose>

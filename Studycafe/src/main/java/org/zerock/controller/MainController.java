@@ -44,49 +44,44 @@ public class MainController {
 		//return "/member/main";
 		}
 		
-		List<Kategorie> katlist = kateService.getKateList(null);
-		model.addAttribute("katlist", katlist);
-		model.addAttribute("katTargetNo", 0);
-		model.addAttribute("katTargetName", "Dashboard");
-		System.out.println(katlist);
 		String action = request.getPathInfo();
 
 		try {
 			if (action == null) {
 
-				List<Seat> list = seatservice.getSeatList(); // ÁÂ¼® Á¤º¸ °¡Á®¿À±â seatDao·Îµé¾î°¡°í select all
-				model.addAttribute("list", list); // VIEW¿¡ ÁÂ¼® Á¤º¸ ¼¼ÆÃ
-				List<Board> viewlist = boardservice.getBoardViewList(); // ÃÖ½Å±Û °¡Á®¿À±â boarddao selsect Main viewlist
-				model.addAttribute("viewlist", viewlist); // ÃÖ½Å±Û ¼¼ÆÃ
+				List<Seat> list = seatservice.getSeatList(); // ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ seatDaoï¿½Îµï¿½î°¡ï¿½ï¿½ select all
+				model.addAttribute("list", list); // VIEWï¿½ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				List<Board> viewlist = boardservice.getBoardViewList(); // ï¿½Ö½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ boarddao selsect Main viewlist
+				model.addAttribute("viewlist", viewlist); // ï¿½Ö½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½
 				Map<String, Integer> statis = seatservice.getSeatCount();//seatDao slelctSeatcoun
 				model.addAttribute("statis", statis);
 
 				return "/main/main";
 
 			} else if ("/main.do".equals(action)) {
-				List<Seat> list = seatservice.getSeatList();// ÁÂ¼® Á¤º¸ °¡Á®¿À±â
-				model.addAttribute("list", list);// VIEW¿¡ ÁÂ¼® Á¤º¸ ¼¼ÆÃ
+				List<Seat> list = seatservice.getSeatList();// ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				model.addAttribute("list", list);// VIEWï¿½ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-				List<Board> viewlist = boardservice.getBoardViewList(); // ÃÖ½Å±Û °¡Á®¿À±â
-				model.addAttribute("viewlist", viewlist); // ÃÖ½Å±Û ¼¼ÆÃ
-				Map<String, Integer> statis = seatservice.getSeatCount(); // ÁÂ¼® Ä«¿îÆ® °¡Á®¿À±â
-				model.addAttribute("statis", statis); // ÁÂ¼® °¡¿îÆ® ¼¼ÆÃ
+				List<Board> viewlist = boardservice.getBoardViewList(); // ï¿½Ö½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				model.addAttribute("viewlist", viewlist); // ï¿½Ö½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½
+				Map<String, Integer> statis = seatservice.getSeatCount(); // ï¿½Â¼ï¿½ Ä«ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				model.addAttribute("statis", statis); // ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 				return "/main/main";
 				
 			} else if (action.equals("/change.do")) {
 
 				PrintWriter out = response.getWriter();
 
-				// ÁÂ¼® Á¤º¸ ¼¼ÆÃ
+				// ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				Seat seat = new Seat();
-				//ÀÌ°Ç vo¸¸µç°Å¶ó¼­ ½Å°æ¢ÇÊ¿ä°¡¾ø°í
+				//ï¿½Ì°ï¿½ voï¿½ï¿½ï¿½ï¿½Å¶ï¿½ ï¿½Å°æ¢ï¿½Ê¿ä°¡ï¿½ï¿½ï¿½ï¿½
 				String userId = request.getParameter("userId");
-				//ÀÌÂÊµµ Á¶±İ ¼ÕºÁ¾ßÇÒµí getparameter¾µÇÊ¿ä¾øÀ»²¨°°Àºµ¥
+				//ï¿½ï¿½ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Õºï¿½ï¿½ï¿½ï¿½Òµï¿½ getparameterï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				seat.setUserId(userId);
 				seat.setSeatNo(request.getParameter("SeatNo"));
 				seat.setSeatComment("02");
 
-				// ÀúÀå
+				// ï¿½ï¿½ï¿½ï¿½
 				seatservice.SeatUpdate(seat);//seatDAo update
 				
 				out.print("success");

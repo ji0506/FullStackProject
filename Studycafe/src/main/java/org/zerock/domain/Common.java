@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class Common {
 
-	private int section;
+	private int section = 1;
 	
-	private int pageNum;
+	private int pageNum = 1;
 	
 	private String searchId;
 

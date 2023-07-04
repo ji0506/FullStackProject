@@ -8,26 +8,25 @@
 
 	<select id="selectBoardList" parameterType="org.zerock.domain.Common" resultType="org.zerock.domain.Board">
 		SELECT * FROM ( 
-		SELECT  
-			brd_no as brdNo
-			,title
-			,content
-			,regDate
-			,kate_no as katNo
-			,vote_no as voteNo 
-			,cnt
-			,user_id as userId
-			,ROW_NUMBER() over(ORDER BY regDate desc) AS rownum
-			,count(1) over() AS totalCount 
-		from board  
-		where kate_no=? 
-		<if test='searchId != null || searchId != ""'>
-			and ${searchId} 
-		</if>
-		<if test='searchText != null || searchText != ""'>
-			(like '%' ||#{searchText}||'%')
-		</if>
-		order by regDate DESC 
+			SELECT  
+				brd_no as brdNo
+				,title
+				,content
+				,regDate
+				,kate_no as katNo
+				,cnt as cnt
+				,user_id as userId
+				,ROW_NUMBER() over(ORDER BY regDate desc) AS rownum
+				,count(1) over() AS totalCount 
+			from board  
+			where kate_no= #{katNo} 
+			<if test='searchId != null and searchId != ""'>
+				and ${searchId} 
+			</if>
+			<if test='searchText != null and searchText != ""'>
+				(like '%' ||#{searchText}||'%')
+			</if>
+			order by regDate DESC 
 		) c 
 		WHERE rownum BETWEEN (#{section}-1)*10*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
 		order by rownum

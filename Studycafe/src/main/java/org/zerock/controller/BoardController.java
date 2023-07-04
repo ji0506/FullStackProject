@@ -30,22 +30,7 @@ public class BoardController {
 
 	@RequestMapping("/list.do")
 	public String list(Model model, Common common) {		
-		
-		List<Kategorie> katlist  = brdService.getMenu();
-		model.addAttribute("katlist", katlist);
-
-		
-		if(common.getKatNo() != 0) 
-			model.addAttribute("katTargetNo", common.getKatNo());
-			
-		for(Kategorie kat : katlist) {
-			if(common.getKatNo() == kat.getKateNo()){
-				model.addAttribute("katTargetName", kat.getKateName());
-			}
-		}
-		
 		List<Board> list  = brdService.getBoardList(common);
-
 		
 		model.addAttribute("section", common.getSection());
 		model.addAttribute("pageNum", common.getPageNum());
@@ -61,7 +46,7 @@ public class BoardController {
 		if(list.size() > 0)
 			model.addAttribute("tot", list.get(0).getTotalCount());
 
-		return "/board/list";
+		return "/board/board";
 	}
 	
 	@RequestMapping("/view.do")

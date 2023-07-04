@@ -9,7 +9,7 @@ public interface CommentMapper {
 	
 	List<Comment> selectCommentList(int brdNo);
 	
-	Kategorie selectById(int brdNo);
+	Comment selectById(int brdNo);
 	
 	boolean create(Comment comment);
 	

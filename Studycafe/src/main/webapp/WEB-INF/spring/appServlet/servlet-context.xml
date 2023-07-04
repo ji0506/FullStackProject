@@ -23,6 +23,13 @@
 	
 	<context:component-scan base-package="org.zerock.controller" />
 	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/*/*.do" />
+			<beans:bean
+				class="org.zerock.interceptor.KateInterceptor" />
+		</interceptor>
+	</interceptors>
+	<!-- 멀티파트 리졸버 -->
 	
 </beans:beans>

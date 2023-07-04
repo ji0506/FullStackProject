@@ -27,10 +27,6 @@ public interface BoardMapper {
 	public int insertVote(Board brd);
 
 	public int selectVote(Board brd);
+	
 	public List<Board> selectMainViewList();
-	
-	
-	
-	
-
 }
