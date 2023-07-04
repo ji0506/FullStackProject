@@ -85,7 +85,11 @@ public class BoardService  {
 	public void saveComment(Comment commnect) {
 		commentMapper.create(commnect);
 	}
-	
+
+	public List<Board> getBoardViewList() {
+		
+		return BoardMapper.selectMainViewList();
+	}
 	
 
 	

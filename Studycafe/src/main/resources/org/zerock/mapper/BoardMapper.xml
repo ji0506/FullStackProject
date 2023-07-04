@@ -82,7 +82,30 @@
 			WHERE rownum
 			BETWEEN (#{section}-1)*10*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10 order by rownum
 	</select>
-	
+	<select id="selectMainViewList" parameterType="org.zerock.domain.Board" resultType="org.zerock.domain.Board">
+		SELECT t1.*
+		FROM
+		(
+		SELECT b.brd_no, CONCAT('[공지]',title) AS title,
+		b.content,b.file_name,b.regDate,b.kate_no,b.vote_no,b.cnt,b.user_id  userId
+		FROM board b
+		WHERE kate_no = 1
+		ORDER BY regDate asc
+		LIMIT 2
+		) AS t1
+		UNION
+		SELECT
+		t2.*
+		FROM (
+		SELECT brd_no,title,
+		 content, file_name, regDate, kate_no, vote_no, cnt , user_Id  userId
+		FROM board
+		WHERE kate_no != 1
+		ORDER BY regDate desc
+		LIMIT 3
+		) AS t2
+		
+	</select>
 	
 	
 	

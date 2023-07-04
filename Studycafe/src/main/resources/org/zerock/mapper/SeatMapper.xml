@@ -6,15 +6,25 @@
 
 <mapper namespace="org.zerock.mapper.SeatMapper">
 
-	<select id="selectSeatList" resultType="org.zerock.domain.Seat">
-		select
-			s.*, 	
-			t.seat_type_name,
-			c.seat_comment_data,
-		from seat s
-		INNER JOIN seat_type t ON(s.seat_type = t.seat_type)
-		INNER JOIN seat_comment c ON(s.seat_comment = c.seat_comment)
+<select id="selectSeatList" parameterType="org.zerock.domain.Seat" resultType="org.zerock.domain.Seat">
+	select 
+		s.seat_no seatno ,s.seat_comment seatcomment,s.seat_type seattype,s.user_id userid,
+		t.seat_type_name seattypename,
+		c.seat_comment_data seatcommentdata
+		from seat s inner join seat_type t on s.seat_type = t.seat_type
+		inner join seat_comment c on s.seat_comment = c.seat_comment
 	</select>
-	
+
+	<select id="selectSeatCount" resultType="Map">
+		SELECT
+		COUNT(*) AS TotalCnt
+		, COUNT(*) - (select COUNT(*) FROM seat WHERE seat_comment != '01') AS
+		seatCnt
+		FROM seat
+	</select>
+	<update id="update" >
+	update seat set seat_comment =#{getSeatComment} ,user_id =#{getUserId}  where seat_no=#{getSeatNo}
+	</update>
+
 	
 </mapper>

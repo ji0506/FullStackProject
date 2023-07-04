@@ -124,11 +124,11 @@
 									 	<div class="statis-body">
 											<p class="title-1">남은좌석수</p>
 											<p class="value-1">
-												<fmt:formatNumber value="${statis.seatcnt}" type="number" />
+												<fmt:formatNumber value="${statis.seatCnt}" type="number" />
 											</p>
 											<p class="title-2">좌석수</p>
 											<p class="value-2">
-												<fmt:formatNumber value="${statis.totalcnt}" type="number" />
+												<fmt:formatNumber value="${statis.TotalCnt}" type="number" />
 											</p>
 									  	</div>
 									</div>								
@@ -145,7 +145,7 @@
 															<a href="${contextPath}/board/view.do?brdNo=${item.brdNo}&katNo=${3}" title="게시글 상세보기">${item.title}</a>
 														</td>
 														<td class="date">${item.userId}</td>
-														<td class="date">${item.regDate}</td>
+														<td class="date"><fmt:formatDate pattern="yy-MM-dd" value="${item.regDate}"/></td>
 														<td class="date">${item.cnt}</td>
 													</tr>
 												</c:forEach>
