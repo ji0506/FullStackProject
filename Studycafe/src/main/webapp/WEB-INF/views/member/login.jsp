@@ -18,9 +18,10 @@
 				<h2 class="active">로그인</h2>
 				<!-- Login Form -->
 				<form action="${contextPath}/member/login.do" method="post">
-					<input type="text" id="login" class="fadeIn second" name="userId" placeholder="아이디"> 
-					<input type="password" id="password" class="fadeIn third" name="userPwd" placeholder="비밀번호" autocomplete="off"> 
+					<input type="text" id="userID" class="fadeIn second" name="userID" placeholder="아이디"> 
+					<input type="password" id="password" class="fadeIn third" name="password" placeholder="비밀번호" autocomplete="off"> 
 					<input type="submit" class="fadeIn fourth" value="로그인">
+					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 				<!-- Signup Link -->
 				<div id="formFooter">

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.zerock.domain.Kategorie;
@@ -33,7 +34,11 @@ public class KateInterceptor extends HandlerInterceptorAdapter {
 			for(Kategorie kat : katlist)
 				if(katNo == kat.getKateNo())
 					request.setAttribute("katTargetName", kat.getKateName());
+			
+			String userId = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+			
+			request.setAttribute("userId", userId);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
