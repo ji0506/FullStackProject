@@ -5,13 +5,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<security:http>
+	<security:http auto-config="true" use-expressions="true">
+			<security:intercept-url pattern="/member/join.do" access="permitAll"/>
 			<security:intercept-url pattern="/member/main.do" access="permitAll"/>
 			<security:intercept-url pattern="/member/login.do" access="permitAll"/>
-			<security:intercept-url pattern="/member/**" access="hasRole('ROLE_USER')"/>
-			<security:intercept-url pattern="/board/**" access="hasRole('ROLE_USER')"/>
-			<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_USER')"/>
-			<security:intercept-url pattern="/main/**" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/member/*.do" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/board/*.do" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/admin/*.do" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/main/*.do" access="hasRole('ROLE_USER')"/>
 		
 		<security:form-login username-parameter="userID"
 		            password-parameter="password"
@@ -24,15 +25,14 @@
 		        invalidate-session="true"
 		/>
 
-	</security:http>
-	
+
+	</security:http>        		 
+ 	
 	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="admin" password="12345"
-					authorities="ROLE_USER" />
-			</security:user-service>
-		</security:authentication-provider>
-	</security:authentication-manager>
+	    <security:authentication-provider ref="datasourceAuthenticationProvider"/>
+	</security:authentication-manager>	
+    
+    <bean id="datasourceAuthenticationProvider" class="org.zerock.security.DatasourceAuthenticationProvider"/>  
+    
        
 </beans>
