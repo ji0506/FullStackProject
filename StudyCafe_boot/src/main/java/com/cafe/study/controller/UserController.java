@@ -28,7 +28,7 @@ public class UserController {
 	@RequestMapping("/main.do")
 	public String list() {
 		
-		return "login";
+		return "member/login";
 	}
 	
 	

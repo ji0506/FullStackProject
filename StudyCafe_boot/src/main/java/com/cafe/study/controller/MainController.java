@@ -66,7 +66,7 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		return "member/main";
+		return "main/main";
 	}
 
 }
