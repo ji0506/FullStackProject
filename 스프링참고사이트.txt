@@ -13,3 +13,12 @@ https://data-make.tistory.com/658
 시큐리티
 https://offbyone.tistory.com/91
 https://shxrecord.tistory.com/239
+
+
+su 
+sudo
+html5 css3 jses6
+
+reactV18 / Rounter 6/ nextjs13
+java 11 / spring5 / spring 2.5 - tomcat 9
+java 17 /spring g 6/spring boot3 - tomcat10

@@ -37,7 +37,7 @@
 					<td width="20%"><a
 						href="${contextPath}/board/view.do?brdNo=${item2.brdNo}&katNo=1">${item2.title}</a></td>
 					<td width="30%">${item2.userId}</td>
-					<td width="30%">${item2.regDate}</td>
+					<td width="30%"><fmt:formatDate pattern="yy-MM-dd" value="${item2.regDate}"/></td>
 					<td width="10%">${item2.cnt}</td>
 			</c:forEach>
 			<c:choose>
@@ -58,7 +58,7 @@
 							<td width="20%"><a
 								href="${contextPath}/board/view.do?brdNo=${item.brdNo}&katNo=${katTargetNo}">${item.title}</a></td>
 							<td width="30%">${item.userId}</td>
-							<td width="30%">${item.regDate}</td>
+							<td width="30%"><fmt:formatDate pattern="yy-MM-dd" value="${item.regDate}"/></td>
 							<td width="10%">${item.cnt}</td>
 
 					</c:forEach>

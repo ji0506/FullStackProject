@@ -36,7 +36,6 @@
 					<input type="submit" class="fadeIn fourth" value="로그인">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" id="errMsg" value='${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}' />
-
 				</form>
 				<!-- Signup Link -->
 				<div id="formFooter">

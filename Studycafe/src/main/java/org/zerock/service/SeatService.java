@@ -31,7 +31,6 @@ public class SeatService  {
 	
 	public void SeatUpdate(Seat vo) {
 		 Seatmapper.update(vo);
-		 System.out.println("¼º°ø");
 	}
 
 

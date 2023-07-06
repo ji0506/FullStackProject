@@ -39,7 +39,6 @@ public class MainController {
 
 	@RequestMapping("/main.do")
 	public String main(Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		System.out.println(request.getSession().getAttribute("userId"));
 		if (request.getSession().getAttribute("userId") == null) {
 		//return "/member/main";
 		}
