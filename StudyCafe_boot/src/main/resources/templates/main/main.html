@@ -27,10 +27,10 @@
 								    <td>
 								        <div th:class="${item.seatComment == '02'} ? 'card active' : 'card'">
 								            <div class="card-head">
-								                <p th:text="${item.seatTypeName + ' ' + item.seatNo}"></p>
+								                <p th:text="${item.type.seatTypeName + ' ' + item.seatNo}"></p>
 								            </div>
 								            <div class="card-main">
-								                <p th:text="${item.seatCommentData}"></p>
+								                <p th:text="${item.comment.seatCommentData}"></p>
 								            </div>
 								        </div>
 								    </td>
