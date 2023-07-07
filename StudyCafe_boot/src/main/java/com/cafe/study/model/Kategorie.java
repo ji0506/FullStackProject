@@ -1,5 +1,6 @@
 package com.cafe.study.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +21,10 @@ public class Kategorie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int kateNo = 0;
 	
+	
 	private String kateName;
 	
+	@Column
 	private String userTypeCd;
 	
 	private String kateDetail;

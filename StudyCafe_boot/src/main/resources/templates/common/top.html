@@ -22,9 +22,9 @@
 	</script>
 	
 	<link rel="stylesheet" th:href="@{/css/toggle.css}" />
-		<div th:if="${#strings.isEmpty(userId)}" class="container-fluid">
+		<div th:if="${userId != null}" class="container-fluid">
 			<ul class="nav navbar-nav navbar-right">
-				<li id="btn"><a href="#">${userId}</a>
+				<li id="btn"><a href="#">[[${userId}]]</a>
 					<ul id="slideTogglebox">
 						<li><a href="/member/updateForm.do">회원정보수정</a></li>
 						<li><a href="/member/logout.do" onclick="toggleLogout()"><span id="logoutText">로그아웃</span></a></li>
@@ -33,7 +33,7 @@
 			</ul>
 		</div>
 	<div class="top">
-		<span class="font-nanum">메뉴 / </span> <a class="font-nanum font-blue">${katTargetName}
+		<span class="font-nanum">메뉴 / </span> <a class="font-nanum font-blue">[[${katTargetName}]]	
 		</a>
 	</div>
 

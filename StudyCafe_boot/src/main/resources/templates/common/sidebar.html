@@ -15,15 +15,14 @@
 			<li th:unless="${katTargetNo == 0}">
 				<a class="eng" href="${contextPath}/main/main.do"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a>
 			</li>
-			
-			<div th:each="item : ${katlist}">
+			<th th:each="item : ${katlist}">
 				<li th:if="${katTargetNo == item.kateNo}" class="active">
-					<a href="${contextPath}/board/list.do?katNo=${item.kateNo}">${item.kateName}</a>
+					<a href="${contextPath}/board/list.do?katNo=${item.kateNo}">[[${item.kateName}]]</a>
 				</li>
 				<li th:unless="${katTargetNo == item.kateNo}">
-					<a href="${contextPath}/board/list.do?katNo=${item.kateNo}">${item.kateName}</a>
+					<a href="${contextPath}/board/list.do?katNo=${item.kateNo}">[[${item.kateName}]]</a>
 				</li>
-			</div>
+			</th>
 			<th th:if="${userId == 'admin'}">
 				<li th:if="${1 == katTargetNo}" class="active">
 					<a href="${contextPath}/admin/list.do?katNo=1">공지사항</a>
@@ -40,7 +39,7 @@
 				<li th:if="${100 == katTargetNo}" class="active">
 					<a href="${contextPath}/admin/kate.do?katNo=100">카테고리</a>
 				</li>
-				<li th:if="${100 == katTargetNo}" >
+				<li th:unless="${100 == katTargetNo}" >
 					<a href="${contextPath}/admin/kate.do?katNo=100">카테고리</a>
 				</li>
 			</th>

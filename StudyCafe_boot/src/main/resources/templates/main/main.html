@@ -10,16 +10,12 @@
 </head>
 <body>
 	<div id="viewport">
-		<!-- 
-		<div th:replace="~{layouts/header :: header}"></div>
-		SideBar  
-		<div th:replace="~{fragment/footer :: copy}"></div>
-
-		<div th:include="../sidebar.html :: sidebar"></div>
-		
-		<!-- Content
+		<!--SideBar-->  
+		<div th:insert="~{/common/sidebar}"></div>
+		<!-- Content-->
 		<div id="content">
-			<jsp:include page="../common/top.jsp"></jsp:include>
+			<div th:insert="~{/common/top}"></div>			
+			<!-- Content-->
 			<div class="main_back">			
 				<div class="container">
 					<h1 style="font-family: Namum; text-align: center;">좌석배치</h1>
@@ -27,7 +23,19 @@
 					<div class="wrapper" style="text-align:center;margin-top: 10px;">
 						<table style="width:80%;margin-left: auto;margin-right: auto;">
 							<tr> 
-							<c:forEach items="${list}" var="item" begin="0" end="8" varStatus="stat">
+								<th:block th:each="item, stat : ${list}" th:if="${stat.index} &lt; 9">
+								    <td>
+								        <div th:class="${item.seatComment == '02'} ? 'card active' : 'card'">
+								            <div class="card-head">
+								                <p th:text="${item.seatTypeName + ' ' + item.seatNo}"></p>
+								            </div>
+								            <div class="card-main">
+								                <p th:text="${item.seatCommentData}"></p>
+								            </div>
+								        </div>
+								    </td>
+								</th:block>
+<!--							<c:forEach items="${list}" var="item" begin="0" end="8" varStatus="stat">
 								<td>
 									<c:if test="${item.seatComment =='02'}">
 										<div class="card active">
@@ -96,7 +104,7 @@
 							<tr>
 						</table>
 						<%-- 통계영역 --%>
-						
+						-->
 					</div>
 
 					<div style="border-bottom: 1px solid #bdbdbd42; margin:5px 20px 20px 20px"></div>
@@ -150,11 +158,10 @@
 					</table>
 					<%-- 공지사항 --%>
 				</div>
-			</div>
-		</div> Content End  -->
-	</div>
+			</div><!--Content End  -->
+		</div> <!--Content End  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="<js/bootstrap.js"/>"></script>
+	<script src="/js/bootstrap.js"></script>
 	<script src="/js/main.js"/>"></script>
 	
 </body>

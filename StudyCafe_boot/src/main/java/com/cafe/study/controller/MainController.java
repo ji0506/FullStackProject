@@ -1,11 +1,23 @@
 package com.cafe.study.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.cafe.study.model.Board;
+import com.cafe.study.model.Kategorie;
+import com.cafe.study.model.Seat;
+import com.cafe.study.repository.SeatRepository;
+import com.cafe.study.service.BoardService;
+import com.cafe.study.service.KateService;
+import com.cafe.study.service.SeatService;
 
 import lombok.AllArgsConstructor;
 
@@ -14,11 +26,32 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class MainController {
 
+	private BoardService brdService;
+	
+	@Autowired
+	private SeatService seatService;
+
+	@Autowired
+	private KateService katService;	
+
 	
 
 	@RequestMapping("/main.do")
 	public String main(Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
 
+		List<Kategorie> katlist  = katService.getMenu("02");
+		request.setAttribute("katlist", katlist);
+
+		
+		List<Seat> list = seatService.getSeatList();
+		model.addAttribute("list", list);
+
+//		List<Board> viewlist = brdService.getBoardViewList(); 
+//		model.addAttribute("viewlist", viewlist); 
+//		Map<String, Integer> statis = seatservice.getSeatCount();
+//		model.addAttribute("statis", statis); 
+
+		
 		/*
 		String action = request.getPathInfo();
 
@@ -66,6 +99,9 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
+		
+		model.addAttribute("userId","admin");
+		
 		return "main/main";
 	}
 

@@ -6,4 +6,5 @@ import com.cafe.study.model.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Integer>{
 
+	
 }
