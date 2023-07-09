@@ -1,6 +1,8 @@
 package com.cafe.study.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,17 +20,19 @@ public class SeatService  {
 		return seatRepository.findAll();
 	}
 
-	/*
+
 	public Map<String,Integer> getSeatCount() {
-		
-		return Seatmapper.selectSeatCount();
-		
+
+
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("TotalCnt", (int) seatRepository.count());
+		map.put("SeatCnt",  seatRepository.selectSeatCount());
+
+		return map;
+
 	}
-	
+
 	public void SeatUpdate(Seat vo) {
-		 Seatmapper.update(vo);
-		 System.out.println("����");
-	}*/
-
-
+		seatRepository.save(vo);
+	}
 }

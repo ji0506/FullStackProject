@@ -20,12 +20,15 @@ import com.cafe.study.service.KateService;
 import com.cafe.study.service.SeatService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/main/*")
 @AllArgsConstructor
 public class MainController {
 
+	@Autowired
 	private BoardService brdService;
 	
 	@Autowired
@@ -46,10 +49,11 @@ public class MainController {
 		List<Seat> list = seatService.getSeatList();
 		model.addAttribute("list", list);
 
-//		List<Board> viewlist = brdService.getBoardViewList(); 
-//		model.addAttribute("viewlist", viewlist); 
-//		Map<String, Integer> statis = seatservice.getSeatCount();
-//		model.addAttribute("statis", statis); 
+		List<Board> viewlist = brdService.getBoardViewList();
+		model.addAttribute("viewlist", viewlist);
+
+		Map<String, Integer> statis = seatService.getSeatCount();
+		model.addAttribute("statis", statis);
 
 		
 		/*
@@ -104,5 +108,20 @@ public class MainController {
 		
 		return "main/main";
 	}
+	@RequestMapping("/change.do")
+	@ResponseBody
+	public String change(@RequestParam("userId") String userID, @RequestParam("seatNo") String seatNo){
+
+		Seat seat = new Seat();
+
+//		seat.setUserId(userId);
+//		seat.setSeatNo(seatNo);
+
+		//저장
+//		seatService.SeatUpdate(seat);
+
+		return "success";
+	}
+
 
 }

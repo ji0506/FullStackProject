@@ -39,6 +39,6 @@ public class Board implements Serializable {
 
 	private int cnt;
 	
-	private String user_id;
+	private String userId;
 
 }

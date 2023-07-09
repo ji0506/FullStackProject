@@ -12,8 +12,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor())
-                .addPathPatterns("/*");
- //               .excludePathPatterns("/board"); // 해당 경로는 인터셉터가 가로채지 않는다.
+                .addPathPatterns("/*")
+                .excludePathPatterns("/member"); // 해당 경로는 인터셉터가 가로채지 않는다.
     }
 	
     @Bean

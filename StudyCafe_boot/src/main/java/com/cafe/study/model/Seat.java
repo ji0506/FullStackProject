@@ -1,16 +1,12 @@
 package com.cafe.study.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+
+import java.util.Date;
 
 
 @Entity
@@ -37,7 +33,8 @@ public class Seat {
 	SeatType type;
 
 	String userId;
-	
-	String regDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	Date regDate;
 	  	
 }
