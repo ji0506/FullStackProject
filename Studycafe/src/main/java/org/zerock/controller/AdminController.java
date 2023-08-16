@@ -50,7 +50,7 @@ public class AdminController {
 	
 	@RequestMapping("/")
 	public void admin(@RequestParam(value="section", required=false) String _section, @RequestParam(value="pageNum", required=false) String _pageNum, Model model) {
-				
+			
 		//페이징처리
 		int section = Integer.parseInt(((_section == null) ? "1" : _section));
 		int pageNum = Integer.parseInt(((_pageNum == null) ? "1" : _pageNum));
@@ -176,6 +176,8 @@ public class AdminController {
 	public Kategorie katmod(@RequestParam("katNo") int kateNo) {		//ajax 활용
 		
 //		PrintWriter out = response.getWriter();
+		
+		
 		
 		//추천 표시
 		Kategorie kat = service.getKateView(kateNo); // 추천 여부 확인

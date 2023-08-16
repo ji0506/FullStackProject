@@ -24,7 +24,6 @@ public class Kategorie {
 	
 	private String kateName;
 	
-	@Column
 	private String userTypeCd;
 	
 	private String kateDetail;

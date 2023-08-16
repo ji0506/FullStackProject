@@ -26,7 +26,7 @@
 </head>
 	<body>
 		<div class="wrapper fadeInDown">
-			<div id="formContent">
+			<div id="formContent" >
 				<!-- Tabs Titles -->
 				<h2 class="active">로그인</h2>
 				<!-- Login Form -->
@@ -36,6 +36,7 @@
 					<input type="submit" class="fadeIn fourth" value="로그인">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" id="errMsg" value='${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}' />
+					<input type="hidden" id="errMsg" th:value="${#session.SPRING_SECURITY_LAST_EXCEPTION.message}" />
 				</form>
 				<!-- Signup Link -->
 				<div id="formFooter">

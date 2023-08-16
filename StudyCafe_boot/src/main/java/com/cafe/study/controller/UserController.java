@@ -31,13 +31,10 @@ public class UserController {
 		return "member/login";
 	}
 	
-	
 	@RequestMapping("/login.do")
 	public String login(ModelMap model,HttpServletRequest request, User user) {
 		
-		
 		User user2 = service.getLoginUser(user.getUserId());
-		
 		
 		String hashedPassword = sha256Hash(user.getUserPwd());
 		
@@ -45,8 +42,7 @@ public class UserController {
 			request.getSession().setAttribute("userId", user.getUserId());
 			//로그인 성공시 접속날짜 업데이트. sql에서 SYSDATE() 또는 now() 함수를 써도됨
 			Date utilDate = new Date();
-			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());				
-			
+			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		}
 		
 		return "redirect:/main/main.do";
